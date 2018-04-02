@@ -1,0 +1,28 @@
+scene:
+    background: 
+        color: [0.000, 0.000, 0.000, 1.00]
+
+sources:
+    mars:
+        type: MVT
+        url: 
+            https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
+    hillshade:
+        type: MVT
+        url: 
+            https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-vector-hillshade/1/{z}/{x}/{y}.mvt
+
+layers:
+    layer0:
+        data: { source: hillshade}
+        draw:
+            polygons:
+                order: 1
+                color: rgb(function(){return feature.h}, function(){return feature.h}, function(){return feature.h})
+    layer0:
+        data: { source: mars}
+        draw:
+            lines:
+                order: 0
+                width: 0.4px
+                color: function(){return feature.fill_color}
