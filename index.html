@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Web Map</title>
+    <title>Martian Contours</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
@@ -32,7 +32,7 @@
 			  INPUT_PLACEHOLDER: 'Try Olympus Mons or Sojourner'
 		  },
 		expanded: true,
-		attribution: ''
+		attribution: 'Tiles by <a href="http://openplanetary.co/opm/#3/11.80/-45.04">OpenPlanetaryMap</a>, Data from <a href="https://planetarynames.wr.usgs.gov/AdvancedSearch">IAU, NASA, Kim Stanley Robinson, others</a>'
 	  };
 
   	L.control.geocoder('no-key-required', geocodingOptions).addTo(map);
