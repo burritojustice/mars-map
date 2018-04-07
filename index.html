@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Martian Contours</title>
+    <title>Martian Topology</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
@@ -18,21 +18,23 @@
     <script src="https://www.nextzen.org/tangram/tangram.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.js"></script>
     <script>
-      var map = L.map('map');
+      var map = L.map('map', {
+			zoomControl: false
+		})
       var layer = Tangram.leafletLayer({
-        scene: 'mars.yaml',
+        scene: 'https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/f5a57a4aca22954fce7c1440510a13fffcec4e4f/mars.yaml',
         attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors'
       });
       layer.addTo(map);
       map.setView([-19.07, -3660.10], 2.82);
-	  L.control.zoom({position: 'bottomright'})
+	  L.control.zoom({position: 'bottomright'}).addTo(map)
 	  var geocodingOptions = {
 		url: 'https://api.geocodemars.com/v1',
 		  textStrings: {
 			  INPUT_PLACEHOLDER: 'Try Olympus Mons or Sojourner'
 		  },
 		expanded: true,
-		attribution: 'Tiles by <a href="http://openplanetary.co/opm/#3/11.80/-45.04">OpenPlanetaryMap</a>, Data from <a href="https://planetarynames.wr.usgs.gov/AdvancedSearch">IAU, NASA, Kim Stanley Robinson, others</a>'
+		attribution: ''
 	  };
 
   	L.control.geocoder('no-key-required', geocodingOptions).addTo(map);
