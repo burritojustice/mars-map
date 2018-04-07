@@ -11,6 +11,17 @@ sources:
         type: MVT
         url: 
             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-vector-hillshade/1/{z}/{x}/{y}.mvt
+    landers:
+        type: GeoJSON
+        url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/8594b09096f93f723c929c397de49ed7ac8ecc64/mars_landers.geojson
+    features:
+        type: GeoJSON
+        url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/dcb7b5961f3a29598dee017f8c95448e11c95f8b/gazeteer_of_planetary_nomenclature.geojson
+    mars_trilogy:
+        type: GeoJSON
+        url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/8577b2a1f4698dc7456c5f1c4f279f490bf5d811/mars_trilogy_cities_descriptions.geojson
+        # url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/mars_trilogy_cities_descriptions.geojson
+        # url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/e5f7db8280bd7c87b91752129d4712ab9e9279ac/mars_trilogy_cities.geojson
 
 layers:
     layer0:
@@ -26,3 +37,211 @@ layers:
                 order: 0
                 width: 0.4px
                 color: function(){return feature.fill_color}
+
+    landers:
+        data: { source: landers }
+        draw:
+            points:
+                priority: 0
+                collide: false
+                # color: red
+                color: |
+                    function(){
+                        var color = "yellow"
+                        if (feature.source == "nasa")
+                            {color = "blue"}
+                        if (feature.source == "ussr")
+                            {color = "red"}
+                        return color
+                        }
+                size: 10px
+                outline: 
+                    color: white
+                    width: 2px
+                text:
+                    font:
+                        size: 10px
+                        fill: white
+                        stroke:
+                            width: 2px
+                            color: black
+
+    features:
+        data: { source: features}
+        very_high:
+            filter: 
+                any: 
+                    - layer: 'Mons, montes'
+                    # - layer: 'Chaos, chaoses'
+                    # - layer: 'Planum, plana'
+                    # - layer: 'Planitia, planitiae'
+                    # - layer: 'Terra, terrae'
+                    # - layer: 'Unda, undae'
+                    # - layer: 'Mensa, mensae'
+                    # - layer: 'Tholus, tholi'
+                all:
+                    - $zoom: {min: 3}
+            draw:
+                # points:
+                #     color: [1,1,1,0.4]
+                text:
+                    priority: 1
+                    font:
+                        size: 10px
+                        fill: yellow
+                        stroke:
+                            width: 3px
+                            color: black            
+        high:
+            filter: 
+                any: 
+                    # - layer: 'Mons, montes'
+                    - layer: 'Chaos, chaoses'
+                    - layer: 'Planum, plana'
+                    # - layer: 'Planitia, planitiae'
+                    # - layer: 'Terra, terrae'
+                    - layer: 'Unda, undae'
+                    - layer: 'Mensa, mensae'
+                    - layer: 'Tholus, tholi'
+                all:
+                    - $zoom: {min: 3}
+            draw:
+                # points:
+                #     color: [1,1,1,0.4]
+                text:
+                    priority: 2
+                    font:
+                        size: 10px
+                        fill: lightgreen
+                        stroke:
+                            width: 3px
+                            color: black
+        low:
+            filter: 
+                any: 
+                    - layer: 'Planitia, planitiae'
+                    - layer: 'Vallis, valles'
+                    - layer: 'Fossa, fossae'
+                    - layer: 'Chasma, chasmata'
+                    - layer: 'Cavus, cavi'
+                    - layer: 'Dorsum, dorsa'
+                    - layer: 'Rupes, rupēs'
+                    - layer: 'Scopulus, scopuli'
+                all:
+                    - $zoom: {min: 3}
+            draw:
+                # points:
+                #     color: [1,1,1,0.4]
+                text:
+                    priority: 3
+                    font:
+                        size: 10px
+                        fill: lightblue
+                        stroke:
+                            width: 2px
+                            color: black
+        # cliffs:
+        #     filter:
+        #         any:
+        #             - layer: 'Dorsum, dorsa'
+        #             - layer: 'Rupes, rupēs'
+        #             - layer: 'Scopulus, scopuli'
+        #     draw:
+        #         # points:
+        #         #     color: [1,1,1,0.4]
+        #         text:
+        #             priority: 3
+        #             font:
+        #                 size: 10px
+        #                 fill: red
+        #                 stroke:
+        #                     width: 2px
+        #                     color: black
+        biggest_things:
+            filter:
+                any:
+                    - name: 'Valles Marineris'
+                    - name: 'Olympus Mons'
+            draw: 
+                text:
+                    priority: 0
+                    font:
+                        size: 10px
+                        fill: lightgrey    
+                        stroke:
+                            width: 2px
+                            color: black
+        big_things:
+            filter:
+                any:
+                    - name: 'Valles Marineris'
+                    - name: [Huygens, Schiaparelli, Greeley, Cassini, Antoniadi, Dollfus, Newton,de Vaucouleurs,Copernicus,Herschel,Schroeter,Koval'sky]
+                    - layer: 'Planum, plana'
+                    - layer: 'Planitia, planitiae'
+                    - layer: 'Mons, montes'
+                    - layer: 'Terra, terrae'
+                    # - name: Greeley
+                    # - name: Cassini
+                    # - name: Antoniadi
+                    # - name: Dollfus
+                    
+                    
+            draw: 
+                text:
+                    priority: 1
+                    font:
+                        size: 10px
+                        fill: lightgrey    
+                        stroke:
+                            width: 2px
+                            color: black
+        everything:
+            filter: 
+                all:
+                    # - layer: 'Crater, craters'
+                    - $zoom: {min: 5}
+            draw: 
+                text:
+                    priority: 4
+                    font:
+                        size: 10px
+                        fill: white
+                        stroke:
+                            width: 1px
+                            color: black
+    _mars_trilogy:
+        data: {source: mars_trilogy}
+        draw:
+            points:
+                collide: false
+                color: orange
+                size: 12px
+                outline: 
+                    color: |
+                        function(){
+                            var color = "red"
+                            if (feature.mars_trilogy_book == "Red Mars")
+                                {color = "red"}
+                            if (feature.mars_trilogy_book == "Green Mars")
+                                {color = "green"}
+                            if (feature.mars_trilogy_book == "Blue Mars")
+                                {color = "Blue"}
+                            return color
+                            }
+                    width: 3px
+                    
+                # outline: 
+                #     color: darkred
+                #     width: 3px
+                text:
+                    text_source: Name
+                    priority: 1
+                    font:
+                        size: 10px
+                        fill: orange
+                        stroke:
+                            width: 2px
+                            color: black
+            
+                
+                
