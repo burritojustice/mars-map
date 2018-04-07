@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Web Map</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.css">
+
+
+    <style>
+      html, body { margin: 0; padding: 0; }
+      #map { height: 100%; width: 100%; position: absolute; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://www.nextzen.org/tangram/tangram.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.9.4/leaflet-geocoder-mapzen.js"></script>
+    <script>
+      var map = L.map('map');
+      var layer = Tangram.leafletLayer({
+        scene: 'https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/f5a57a4aca22954fce7c1440510a13fffcec4e4f/mars.yaml',
+        attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors'
+      });
+      layer.addTo(map);
+      map.setView([-19.07, -3660.10], 2.82);
+	  L.control.zoom({position: 'bottomright'})
+	  var geocodingOptions = {
+		url: 'https://api.geocodemars.com/v1',
+		  textStrings: {
+			  INPUT_PLACEHOLDER: 'Try Olympus Mons or Sojourner'
+		  },
+		expanded: true,
+		attribution: ''
+	  };
+
+  	L.control.geocoder('no-key-required', geocodingOptions).addTo(map);
+      
+    </script>
+  </body>
+</html>
