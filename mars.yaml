@@ -6,6 +6,9 @@ sources:
     mars:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
         type: GeoJSON
+        url_params:
+            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            tags: 1km
 #         type: MVT
 #         url: 
 #             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
@@ -38,8 +41,14 @@ layers:
             lines:
                 order: 0
                 width: 0.4px
-                color: function(){return feature.fill_color}
-
+#                 color: function(){return feature.fill_color}
+                color: |
+                    function(){
+                        var elevation = feature.ELEVATION
+                        elevation = elevation + 8000
+                        var hue = 240 - (elevation / 27000) * 240
+                        return 'hsla(' + hue + ', 100%, 50%, 0.85)'
+                        }
     landers:
         data: { source: landers }
         draw:
