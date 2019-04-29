@@ -9,6 +9,7 @@ sources:
         url_params:
             access_token: AVoxWfIDYgZOr4zOaUV3urg
             tags: 1km
+            clip: true
 #         type: MVT
 #         url: 
 #             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
