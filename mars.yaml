@@ -4,9 +4,11 @@ scene:
 
 sources:
     mars:
-        type: MVT
-        url: 
-            https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
+        url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
+        type: GeoJSON
+#         type: MVT
+#         url: 
+#             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
     hillshade:
         type: MVT
         url: 
@@ -24,12 +26,12 @@ sources:
         # url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/e5f7db8280bd7c87b91752129d4712ab9e9279ac/mars_trilogy_cities.geojson
 
 layers:
-    layer0:
-        data: { source: hillshade}
-        draw:
-            polygons:
-                order: 1
-                color: rgb(function(){return feature.h}, function(){return feature.h}, function(){return feature.h})
+#     layer0:
+#         data: { source: hillshade}
+#         draw:
+#             polygons:
+#                 order: 1
+#                 color: rgb(function(){return feature.h}, function(){return feature.h}, function(){return feature.h})
     layer0:
         data: { source: mars}
         draw:
