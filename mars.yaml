@@ -13,6 +13,15 @@ sources:
 #         type: MVT
 #         url: 
 #             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-basemap-v0-1/2/{z}/{x}/{y}.mvt
+
+    mars_200m:
+        url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
+        type: GeoJSON
+        url_params:
+            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            tags: 200m
+            clip: true
+            
     hillshade:
         type: MVT
         url: 
@@ -36,7 +45,8 @@ layers:
 #             polygons:
 #                 order: 1
 #                 color: rgb(function(){return feature.h}, function(){return feature.h}, function(){return feature.h})
-    layer0:
+    _1km:
+        filter: {$zoom: {max: 5}}
         data: { source: mars}
         draw:
             lines:
@@ -50,7 +60,24 @@ layers:
                         var hue = 240 - (elevation / 27000) * 240
                         return 'hsla(' + hue + ', 100%, 50%, 0.85)'
                         }
-    landers:
+    _200m: 
+        filter: {$zoom: {min: 5}}
+        # enabled: false
+        data: {source: _mars_200m}
+        # filter: {kind: point}
+        draw:
+            _lines:
+                color: |
+                    function(){
+                        var elevation = feature.ELEVATION
+                        elevation = elevation + 8000
+                        var hue = 240 - (elevation / 27000) * 240
+                        return 'hsla(' + hue + ', 100%, 50%, 0.85)'
+                        }
+                width: 1px
+                order: 2000
+                
+    _landers:
         data: { source: landers }
         draw:
             points:
@@ -78,7 +105,7 @@ layers:
                             width: 2px
                             color: black
 
-    features:
+    _features:
         data: { source: features}
         very_high:
             filter: 
