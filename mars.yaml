@@ -41,7 +41,7 @@ sources:
             https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-vector-hillshade/1/{z}/{x}/{y}.mvt
     landers:
         type: GeoJSON
-        url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/8594b09096f93f723c929c397de49ed7ac8ecc64/mars_landers.geojson
+        url: https://raw.githubusercontent.com/burritojustice/mars-map/master/geojson/mars_landers.geojson
     features:
         type: GeoJSON
         url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/dcb7b5961f3a29598dee017f8c95448e11c95f8b/gazeteer_of_planetary_nomenclature.geojson
