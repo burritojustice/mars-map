@@ -1,7 +1,20 @@
+
 scene:
     background: 
         color: [0.000, 0.000, 0.000, 1.00]
-
+styles:
+    _points:
+        base: points
+        blend: overlay
+        blend_order: 10
+    _text:
+        base: text
+        blend: overlay
+        blend_order: 11
+    _lines:
+        base: lines
+        blend: overlay
+        blend_order: 1
 sources:
     mars:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
@@ -49,9 +62,9 @@ layers:
         filter: {$zoom: {max: 5}}
         data: { source: mars}
         draw:
-            lines:
+            _lines:
                 order: 0
-                width: 0.4px
+                width: [[0,0.25px],[5,1px]]
 #                 color: function(){return feature.fill_color}
                 color: |
                     function(){
@@ -63,7 +76,7 @@ layers:
     _200m: 
         filter: {$zoom: {min: 5}}
         # enabled: false
-        data: {source: _mars_200m}
+        data: {source: mars_200m}
         # filter: {kind: point}
         draw:
             _lines:
@@ -74,7 +87,7 @@ layers:
                         var hue = 240 - (elevation / 27000) * 240
                         return 'hsla(' + hue + ', 100%, 50%, 0.85)'
                         }
-                width: 1px
+                width: [[5,.5px],[12,2px]]
                 order: 2000
                 
     _landers:
@@ -281,6 +294,4 @@ layers:
                         stroke:
                             width: 2px
                             color: black
-            
-                
-                
+
