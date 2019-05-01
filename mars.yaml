@@ -15,6 +15,14 @@ styles:
         base: lines
         blend: overlay
         blend_order: 1
+    _polygons_inlay:
+        base: polygons
+        blend: inlay
+        blend_order: 0
+    _polygons_overlay:
+        base: polygons
+        blend: overlay
+        blend_order: 1
 sources:
     mars:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
@@ -34,15 +42,32 @@ sources:
             access_token: AVoxWfIDYgZOr4zOaUV3urg
             tags: 200m
             clip: true
-            
-    hillshade:
+    mars_200m_mvt:
+        url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}.mvt
         type: MVT
-        url: 
-            https://cartocdn-ashbu.global.ssl.fastly.net/nmanaud/api/v1/map/named/opm-mars-vector-hillshade/1/{z}/{x}/{y}.mvt
+        url_params:
+            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            tags: 200m
+            clip: true
+    mars_1km_mvt:
+        url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}.mvt
+        type: MVT
+        url_params:
+            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            tags: 1km
+            clip: true
+    hillshade:
+        url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}.mvt
+        type: MVT
+        url_params:
+            # simplify: true
+            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            tags: 1km_polygons+ELEVATION@6000,1km_polygons+ELEVATION@7000,1km_polygons+ELEVATION@8000,1km_polygons+ELEVATION@9000,1km_polygons+ELEVATION@10000,1km_polygons+ELEVATION@11000,1km_polygons+ELEVATION@12000,1km_polygons+ELEVATION@13000,1km_polygons+ELEVATION@14000,1km_polygons+ELEVATION@15000,1km_polygons+ELEVATION@16000,1km_polygons+ELEVATION@17000,1km_polygons+ELEVATION@18000,1km_polygons+ELEVATION@19000,1km_polygons+ELEVATION@20000,1km_polygons+ELEVATION@21000
+            # tags: 1km_polygons+elevation@10000
+            clip: true
     landers:
         type: GeoJSON
-        # url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/8594b09096f93f723c929c397de49ed7ac8ecc64/mars_landers.geojson
-        url: https://raw.githubusercontent.com/burritojustice/mars-map/master/geojson/mars_landers.geojson
+        url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/8594b09096f93f723c929c397de49ed7ac8ecc64/mars_landers.geojson
     features:
         type: GeoJSON
         url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/dcb7b5961f3a29598dee017f8c95448e11c95f8b/gazeteer_of_planetary_nomenclature.geojson
@@ -53,6 +78,20 @@ sources:
         # url: https://gist.githubusercontent.com/burritojustice/2d967b31c3bd11165b4439ebe98ecb01/raw/e5f7db8280bd7c87b91752129d4712ab9e9279ac/mars_trilogy_cities.geojson
 
 layers:
+    _hillshade:
+        enabled: false
+        data: {source: hillshade, layer: sUNhJFNW }
+        draw:
+            _polygons_inlay:
+                order: function(){return feature['properties.ELEVATION']}
+                # color: function(){return feature.FILL_COLOR}
+                color: |
+                    function(){
+                        var elevation = feature['properties.ELEVATION']
+                        elevation = elevation + 8000
+                        var hue = 240 - (elevation / 27000) * 240
+                        return 'hsla(' + hue + ', 100%, 50%, 0.1)'
+                    }
 #     layer0:
 #         data: { source: hillshade}
 #         draw:
@@ -60,7 +99,8 @@ layers:
 #                 order: 1
 #                 color: rgb(function(){return feature.h}, function(){return feature.h}, function(){return feature.h})
     _1km:
-        filter: {$zoom: {max: 5}}
+        enabled: false
+        filter: {$zoom: {max: 6}}
         data: { source: mars}
         draw:
             _lines:
@@ -74,11 +114,28 @@ layers:
                         var hue = 240 - (elevation / 27000) * 240
                         return 'hsla(' + hue + ', 100%, 50%, 0.85)'
                         }
-    _200m: 
-        filter: {$zoom: {min: 5}}
+    _1km_mvt: 
         # enabled: false
-        data: {source: mars_200m}
+        filter: {$zoom: {max: 5}}
+        data: {source: mars_1km_mvt, layer: sUNhJFNW }
         # filter: {kind: point}
+        draw:
+            _lines:
+                color: |
+                    function(){
+                        var elevation = feature['properties.ELEVATION']
+                        elevation = elevation + 8000
+                        var hue = 240 - (elevation / 27000) * 240
+                        return 'hsla(' + hue + ', 100%, 50%, 0.85)'
+                        }
+                # color: [1,.55,0,0.55]
+                width: [[0,0.25px],[5,.75px]]
+                order: 2000
+                        
+    _200m: 
+        enabled: false
+        data: {source: mars_200m}
+        filter: {$zoom: {min: 4}}
         draw:
             _lines:
                 color: |
@@ -90,7 +147,23 @@ layers:
                         }
                 width: [[5,.5px],[12,2px]]
                 order: 2000
-                
+    _200m_mvt: 
+        # enabled: false
+        filter: {$zoom: {min: 4}}
+        data: {source: mars_200m_mvt, layer: sUNhJFNW }
+        # filter: {kind: point}
+        draw:
+            _lines:
+                color: |
+                    function(){
+                        var elevation = feature['properties.ELEVATION']
+                        elevation = elevation + 8000
+                        var hue = 240 - (elevation / 27000) * 240
+                        return 'hsla(' + hue + ', 100%, 50%, 0.85)'
+                        }
+                # color: [1,.55,0,0.55]
+                width: [[4,0px],[12,2px]]
+                order: 2000
     _landers:
         data: { source: landers }
         draw:
@@ -100,7 +173,7 @@ layers:
                 # color: red
                 color: |
                     function(){
-                        var color = "yellow"
+                        var color = "orange"
                         if (feature.source == "nasa")
                             {color = "blue"}
                         if (feature.source == "ussr")
@@ -268,6 +341,7 @@ layers:
             points:
                 collide: false
                 color: orange
+                # color: [1,.75,0]
                 size: 12px
                 outline: 
                     color: |
