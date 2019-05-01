@@ -17,5 +17,6 @@
 { "type": "Feature", "properties": { "name": "Phoenix Mars Lander", "LAT": -68.15, "LON": -125.9, "west": 125.9, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -125.9, -68.15 ] } },
 { "type": "Feature", "properties": { "name": "Mars Science Laboratory (Curiosity)", "LAT": -4.6, "LON": -137.2, "west": 137.2, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -137.2, -4.6 ] } },
 { "type": "Feature", "properties": { "name": "Schiaparelli EDM lander", "LAT": 0.2, "LON": -2.5, "west": null, "layer": "lander", "source": "esa-roscosmos" }, "geometry": { "type": "Point", "coordinates": [ -2.5, 0.2 ] } }
+{ "type": "Feature", "properties": { "name": "Insight", "LAT": 4.5, "LON": 135.9, "west": null, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 135.9, 4.5 ] } }
 ]
 }
