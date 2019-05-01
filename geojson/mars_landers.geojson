@@ -2,21 +2,20 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "name": "Mars 2", "LAT": -45.0, "LON": 47.0, "west": 313.0, "layer": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ 47.0, -45.0 ] } },
-{ "type": "Feature", "properties": { "name": "Mars 3", "LAT": -45.0, "LON": -158.0, "west": 158.0, "layer": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ -158.0, -45.0 ] } },
-{ "type": "Feature", "properties": { "name": "Mars 6", "LAT": -23.9, "LON": -29.42, "west": 29.42, "layer": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ -29.42, -23.9 ] } },
-{ "type": "Feature", "properties": { "name": "Viking 1 lander", "LAT": 22.697, "LON": -48.222, "west": 48.222, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -48.222, 22.697 ] } },
-{ "type": "Feature", "properties": { "name": "Viking 2 lander", "LAT": 48.269, "LON": 137.01, "west": 222.99, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 137.01, 48.269 ] } },
-{ "type": "Feature", "properties": { "name": "Mars Pathfinder Lander", "LAT": 19.33, "LON": -33.55, "west": 33.55, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -33.55, 19.33 ] } },
-{ "type": "Feature", "properties": { "name": "Sojouner Rover", "LAT": 19.33, "LON": -33.55, "west": 33.55, "layer": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -33.55, 19.33 ] } },
-{ "type": "Feature", "properties": { "name": "Mars Climate Orbiter", "LAT": 0.0, "LON": 0.0, "west": 0.0, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 0.0, 0.0 ] } },
-{ "type": "Feature", "properties": { "name": "Mars Polar Lander & Deep Space 2", "LAT": -76.0, "LON": 165.0, "west": 195.0, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 165.0, -76.0 ] } },
-{ "type": "Feature", "properties": { "name": "Beagle 2", "LAT": 11.5265, "LON": -90.4295, "west": 90.4295, "layer": "lander", "source": "esa" }, "geometry": { "type": "Point", "coordinates": [ -90.4295, 11.5265 ] } },
-{ "type": "Feature", "properties": { "name": "Spirit rover (MER-A)", "LAT": 14.5718, "LON": -175.4785, "west": 175.4785, "layer": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -175.4785, 14.5718 ] } },
-{ "type": "Feature", "properties": { "name": "Opportunity rover (MER-B)", "LAT": -1.9462, "LON": 5.5266, "west": 354.4734, "layer": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 5.5266, -1.9462 ] } },
-{ "type": "Feature", "properties": { "name": "Phoenix Mars Lander", "LAT": -68.15, "LON": -125.9, "west": 125.9, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -125.9, -68.15 ] } },
-{ "type": "Feature", "properties": { "name": "Mars Science Laboratory (Curiosity)", "LAT": -4.6, "LON": -137.2, "west": 137.2, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -137.2, -4.6 ] } },
-{ "type": "Feature", "properties": { "name": "Schiaparelli EDM lander", "LAT": 0.2, "LON": -2.5, "west": null, "layer": "lander", "source": "esa-roscosmos" }, "geometry": { "type": "Point", "coordinates": [ -2.5, 0.2 ] } }
-{ "type": "Feature", "properties": { "name": "Insight", "LAT": 4.5, "LON": 135.9, "west": null, "layer": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 135.9, 4.5 ] } }
+{ "type": "Feature", "properties": { "name": "Mars 2", "successful": false, "LAT": -45.0, "LON": 47.0, "west": 313.0, "kind": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ 47.0, -45.0 ] } },
+{ "type": "Feature", "properties": { "name": "Mars 3", "successful": false, "LAT": -45.0, "LON": -158.0, "west": 158.0, "kind": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ -158.0, -45.0 ] } },
+{ "type": "Feature", "properties": { "name": "Mars 6", "successful": false, "LAT": -23.9, "LON": -29.42, "west": 29.42, "kind": "lander", "source": "ussr" }, "geometry": { "type": "Point", "coordinates": [ -29.42, -23.9 ] } },
+{ "type": "Feature", "properties": { "name": "Viking 1 lander", "successful": true, "status": "lan", "LAT": 22.697, "LON": -48.222, "west": 48.222, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -48.222, 22.697 ] } },
+{ "type": "Feature", "properties": { "name": "Viking 2 lander", "successful": true, "LAT": 48.269, "LON": 137.01, "west": 222.99, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 137.01, 48.269 ] } },
+{ "type": "Feature", "properties": { "name": "Mars Pathfinder Lander", "successful": true, "LAT": 19.33, "LON": -33.55, "west": 33.55, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -33.55, 19.33 ] } },
+{ "type": "Feature", "properties": { "name": "Sojouner Rover", "successful": true, "LAT": 19.33, "LON": -33.55, "west": 33.55, "kind": "rover", "rover": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -33.55, 19.33 ] } },
+{ "type": "Feature", "properties": { "name": "Mars Polar Lander & Deep Space 2", "successful": false, "LAT": -76.0, "LON": 165.0, "west": 195.0, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 165.0, -76.0 ] } },
+{ "type": "Feature", "properties": { "name": "Beagle 2", "successful": false, "LAT": 11.5265, "LON": -90.4295, "west": 90.4295, "kind": "lander", "source": "esa" }, "geometry": { "type": "Point", "coordinates": [ -90.4295, 11.5265 ] } },
+{ "type": "Feature", "properties": { "name": "Spirit rover (MER-A)", "successful": true, "LAT": 14.5718, "LON": -175.4785, "west": 175.4785, "kind": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -175.4785, 14.5718 ] } },
+{ "type": "Feature", "properties": { "name": "Opportunity rover (MER-B)", "successful": true, "LAT": -1.9462, "LON": 5.5266, "west": 354.4734, "kind": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 5.5266, -1.9462 ] } },
+{ "type": "Feature", "properties": { "name": "Phoenix Mars Lander", "successful": true, "LAT": -68.15, "LON": -125.9, "west": 125.9, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ -125.9, -68.15 ] } },
+{ "type": "Feature", "properties": { "name": "Mars Science Laboratory (Curiosity)", "successful": true, "LAT": -4.6, "LON": 137.2, "west": 137.2, "kind": "rover", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 137.2, -4.6 ] } },
+{ "type": "Feature", "properties": { "name": "Schiaparelli EDM lander", "successful": true, "LAT": 0.2, "LON": -2.5, "west": null, "kind": "lander", "source": "esa-roscosmos" }, "geometry": { "type": "Point", "coordinates": [ -2.5, 0.2 ] } },
+{ "type": "Feature", "properties": { "name": "Insight", "successful": true, "LAT": 4.5, "LON": 135.9, "west": null, "kind": "lander", "source": "nasa" }, "geometry": { "type": "Point", "coordinates": [ 135.9, 4.5 ] } }
 ]
 }
