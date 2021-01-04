@@ -1,4 +1,5 @@
-
+global:
+    api_key: AFZJ6wh2RWy4VOehz35crQA
 scene:
     background: 
         color: [0.000, 0.000, 0.000, 1.00]
@@ -28,7 +29,7 @@ sources:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
         type: GeoJSON
         url_params:
-            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            access_token: AFZJ6wh2RWy4VOehz35crQA
             tags: 1km
             clip: true
             tweaks: simplification
@@ -41,7 +42,7 @@ sources:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}
         type: GeoJSON
         url_params:
-            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            access_token: AFZJ6wh2RWy4VOehz35crQA
             tags: 200m
             clip: true
             tweaks: simplification
@@ -50,14 +51,14 @@ sources:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}.mvt
         type: MVT
         url_params:
-            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            access_token: AFZJ6wh2RWy4VOehz35crQA
             tags: 200m
             clip: true
     mars_1km_mvt:
         url: https://xyz.api.here.com/hub/spaces/sUNhJFNW/tile/web/{z}_{x}_{y}.mvt
         type: MVT
         url_params:
-            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            access_token: AFZJ6wh2RWy4VOehz35crQA
             tags: 1km
             clip: true
     hillshade:
@@ -65,7 +66,7 @@ sources:
         type: MVT
         url_params:
             # simplify: true
-            access_token: AVoxWfIDYgZOr4zOaUV3urg
+            access_token: AFZJ6wh2RWy4VOehz35crQA
             tags: 1km_polygons+ELEVATION@6000,1km_polygons+ELEVATION@7000,1km_polygons+ELEVATION@8000,1km_polygons+ELEVATION@9000,1km_polygons+ELEVATION@10000,1km_polygons+ELEVATION@11000,1km_polygons+ELEVATION@12000,1km_polygons+ELEVATION@13000,1km_polygons+ELEVATION@14000,1km_polygons+ELEVATION@15000,1km_polygons+ELEVATION@16000,1km_polygons+ELEVATION@17000,1km_polygons+ELEVATION@18000,1km_polygons+ELEVATION@19000,1km_polygons+ELEVATION@20000,1km_polygons+ELEVATION@21000
             # tags: 1km_polygons+elevation@10000
             clip: true
